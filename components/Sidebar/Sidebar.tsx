@@ -17,7 +17,7 @@ import {
 
 function Sidebar() {
   return (
-    <div>
+    <section className="col-span-2 flex flex-col items-center md:items-baseline m-3">
       <Image
         src="https://links.papareact.com/drq"
         alt=""
@@ -32,7 +32,7 @@ function Sidebar() {
       <SidebarRow Icon={CircleStackIcon} title="Lists" />
       <SidebarRow Icon={UserIcon} title="Sign in" />
       <SidebarRow Icon={EllipsisHorizontalIcon} title="More" />
-    </div>
+    </section>
   );
 }
 
