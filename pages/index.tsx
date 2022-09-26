@@ -3,6 +3,7 @@ import Head from "next/head";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Image from "next/image";
 import Widget from "../components/Widget";
+import TweetBox from "../components/TweetBox/TweetBox";
 
 const Home: NextPage = () => {
   return (
@@ -14,6 +15,7 @@ const Home: NextPage = () => {
       <h1>Welcome to twitter app</h1>
       <Sidebar />
       <Widget />
+      <TweetBox />
     </div>
   );
 };
