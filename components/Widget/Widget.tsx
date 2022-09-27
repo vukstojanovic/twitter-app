@@ -3,7 +3,7 @@ import { TwitterTimelineEmbed } from "react-twitter-embed";
 
 export default function Widget() {
   return (
-    <section>
+    <section className="hidden md:block md:col-span-2">
       <div className=" py-3 px-3 rounded-full flex mb-2 bg-gray-100">
         <MagnifyingGlassIcon className="w-5 mx-2 text-gray-500" />
 
