@@ -1,8 +1,13 @@
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
+import { Tweet } from "../../typings";
 import TweetBox from "../TweetBox/TweetBox";
-import Tweet from "../Tweet/Tweet";
+import TweetComponent from "../Tweet/Tweet";
 
-export default function Feed() {
+interface Props {
+  tweets: Tweet
+}
+
+export default function Feed({ tweets }: Props) {
   const tweetData = {
     text: "This is a DEMO TWEET",
     username: "Sonny Sangha",
@@ -20,7 +25,7 @@ export default function Feed() {
         <ArrowPathIcon className="w-7 cursor-pointer hover:rotate-180 active:scale-125 hover:text-twitter ease-in-out duration-300" />
       </div>
       <TweetBox />
-      <Tweet {...tweetData} />
+      <TweetComponent {...tweetData} />
     </section>
   );
 }
