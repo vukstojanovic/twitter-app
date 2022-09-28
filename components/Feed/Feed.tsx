@@ -1,7 +1,12 @@
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
+import { Tweet } from "../../typings";
 import TweetBox from "../TweetBox/TweetBox";
 
-export default function Feed() {
+interface Props {
+  tweets: Tweet
+}
+
+export default function Feed({ tweets }: Props) {
   return (
     <section className="col-span-7 p-3 overflow-auto md:col-span-5">
       <div className="flex justify-between items-center">
