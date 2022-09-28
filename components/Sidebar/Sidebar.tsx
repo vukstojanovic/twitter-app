@@ -14,8 +14,11 @@ import {
   HomeIcon,
   EllipsisHorizontalIcon,
 } from "@heroicons/react/24/outline";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 function Sidebar() {
+  const { data: session } = useSession();
+
   return (
     <section className="col-span-2 flex flex-col items-center md:items-baseline m-3">
       <Image
@@ -30,7 +33,11 @@ function Sidebar() {
       <SidebarRow Icon={EnvelopeIcon} title="Messages" />
       <SidebarRow Icon={BookmarkIcon} title="Bookmarks" />
       <SidebarRow Icon={CircleStackIcon} title="Lists" />
-      <SidebarRow Icon={UserIcon} title="Sign in" />
+      <SidebarRow
+        Icon={UserIcon}
+        title={session ? "Sign out" : "Sign in"}
+        onClick={session ? signOut : signIn}
+      />
       <SidebarRow Icon={EllipsisHorizontalIcon} title="More" />
     </section>
   );
