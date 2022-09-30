@@ -31,7 +31,7 @@ function TweetBox() {
   return (
     <div>
       <div className="flex space-x-2 p-5">
-        <div className="mt-4 h-14 w-14 rounded-full object-cover">
+        <div className="m-4 h-14 w-14 rounded-full object-cover">
           <Image
             src={session?.user?.image || "https://links.papareact.com/gll"}
             alt=""
