@@ -1,32 +1,24 @@
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import { Tweet } from "../../typings";
 import TweetBox from "../TweetBox/TweetBox";
-import TweetComponent from "../Tweet/Tweet";
-import toast from "react-hot-toast";
-import { useState } from "react";
+import TweetComponent from "../Tweet/TweetComponent";
 import fetchTweets from "../../utils/fetchTweets";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 interface Props {
-  tweets: Tweet[];
+  tweets: Tweet[]
 }
 
-export default function Feed({ tweets }: Props) {
-  const [tweetsState, setTweetsState] = useState(tweets);
-  const tweetData = {
-    text: "This is a DEMO TWEET",
-    username: "Sonny Sangha",
-    profileImg:
-      "https://pbs.twimg.com/profile_images/1339192504382590976/2WxMn8cm_400x400.jpg",
-    image:
-      "https://media-exp1.licdn.com/dms/image/C4D16AQFBTEZH9739Ng/profile-displaybackgroundimage-shrink_200_800/0/1610818787022?e=2147483647&v=beta&t=H77pitXNXNaBtNvj35KCi7seCtMoYbLq85MWJweDmh4",
-    _createdAt: new Date(),
-  };
+export default function Feed({ tweets: tweetsProp }: Props) {
+  const [tweets, setTweets] = useState<Tweet[]>(tweetsProp)
+  console.log(tweets);
 
-  async function refreshTweets() {
-    const pending = toast.loading("Loading...");
-    const response = await fetchTweets();
-    setTweetsState(response);
-    toast.success("Success yaay!!!", { id: pending });
+  const refreshTweets = async () => {
+    const loading = toast.loading('Loading...')
+    const tweets = await fetchTweets();
+    setTweets(tweets)
+    toast.success('Success', { id: loading })
   }
 
   return (
@@ -37,9 +29,15 @@ export default function Feed({ tweets }: Props) {
           className="w-7 cursor-pointer hover:rotate-180 active:scale-125 hover:text-twitter ease-in-out duration-300"
           onClick={refreshTweets}
         />
-      </div>
+      </div >
       <TweetBox />
-      <TweetComponent {...tweetData} />
-    </section>
+      <div>
+        {tweets.map((tweet) => {
+          return (
+            <TweetComponent key={tweet._id} tweet={tweet} />
+          )
+        })}
+      </div>
+    </section >
   );
 }
