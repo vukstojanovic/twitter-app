@@ -6,72 +6,9 @@ import {
   HeartIcon,
 } from "@heroicons/react/24/outline";
 
-// interface TweetProps {
-//   profileImg: string;
-//   _createdAt: Date;
-//   text: string;
-//   username: string;
-//   image?: string | undefined,
-//   _id: string,
-//   updatedAt: string,
-//   rev: string,
-//   _type: string,
-//   blockTweet: boolean,
-// }
-
-// export default function TweetComponent({
-//   profileImg,
-//   _createdAt,
-//   text,
-//   username,
-//   image,
-// }: TweetProps) {
-//   return (
-//     <div className="mx-4">
-//       <div className="flex mb-5">
-//         <img
-//           src={profileImg}
-//           alt={profileImg}
-//           className="w-12 h-12 rounded-full"
-//         />
-//         <div className="ml-5">
-//           <p className="mb-1">
-//             <span className="font-bold mr-2">{username}</span>
-//             {"  "}
-//             <span className="text-gray-400 whitespace-nowrap">
-//               <TimeAgo date={_createdAt} />
-//             </span>
-//           </p>
-//           <p className="mb-6">{text}</p>
-//           <img
-//             src={image}
-//             alt={image}
-//             className="max-w-200 rounded-[10px] object-cover"
-//           />
-//         </div>
-//       </div>
-//       <div className="flex justify-between">
-//         <p className="text-gray-400 flex items-center space-x-2">
-//           <ChatBubbleLeftRightIcon className="w-5 cursor-pointer" />
-//           <span>5</span>
-//         </p>
-//         <p className="text-gray-400 flex items-center space-x-2">
-//           <ArrowsRightLeftIcon className="w-5 cursor-pointer" />
-//         </p>
-//         <p className="text-gray-400 flex items-center space-x-2">
-//           <HeartIcon className="w-5 cursor-pointer" />
-//         </p>
-//         <p className="text-gray-400 flex items-center space-x-2">
-//           <ArrowUpTrayIcon className="w-5 cursor-pointer" />
-//         </p>
-//       </div>
-//     </div>
-//   );
-// }
-
 import React, { useEffect, useState } from "react";
 import { Tweet, Comment } from "../../typings";
-import { fetchComments } from "../../utils/fetchComments";
+import { fetchComments } from '../../utils/fetchComments'
 
 interface Props {
   tweet: Tweet
@@ -81,7 +18,7 @@ function TweetComponent({ tweet }: Props) {
   const [comments, setComments] = useState<Comment[]>([])
 
   const refreshComments = async () => {
-    const comments: Comment[] = await fetchComments(tweet._id)
+    const comments: any[] = await fetchComments(tweet._id)
     setComments(comments)
   }
 
@@ -103,7 +40,7 @@ function TweetComponent({ tweet }: Props) {
             <TimeAgo className="text-sm text-gray-500" date={tweet._createdAt} />
           </div>
           <p>{tweet.text}</p>
-          {tweet.image && <img src={tweet.image} alt='' classname="m-5 ml-0 mb-1 max-h-60 rounded-lg object-cover shadow-sm" />}
+          {tweet.image && <img src={tweet.image} alt='' className="m-5 ml-0 mb-1 max-h-60 rounded-lg object-cover shadow-sm" />}
         </div>
       </div>
       <div className="mt-5 flex justify-between">
