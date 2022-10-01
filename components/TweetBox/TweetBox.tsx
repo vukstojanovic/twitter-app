@@ -87,7 +87,7 @@ function TweetBox() {
             <img
               src={imageUrl}
               alt=""
-              className="my-4 w-3/4 rounded-[10px] ml-auto"
+              className="my-4 max-h-40 w-full object-contain rounded-[10px]"
             />
           )}
         </div>

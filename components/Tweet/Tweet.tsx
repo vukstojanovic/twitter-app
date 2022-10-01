@@ -41,7 +41,7 @@ export default function Tweet({
           <img
             src={image}
             alt={image}
-            className="max-w-200 rounded-[10px] object-cover"
+            className="max-h-60 rounded-[10px] object-cover ml-0"
           />
         </div>
       </div>

@@ -18,7 +18,7 @@ export default function Feed({ tweets }: Props) {
     profileImg:
       "https://pbs.twimg.com/profile_images/1339192504382590976/2WxMn8cm_400x400.jpg",
     image:
-      "https://media-exp1.licdn.com/dms/image/C4D16AQFBTEZH9739Ng/profile-displaybackgroundimage-shrink_200_800/0/1610818787022?e=2147483647&v=beta&t=H77pitXNXNaBtNvj35KCi7seCtMoYbLq85MWJweDmh4",
+      "https://downloadly.ir/wp-content/uploads/2021/06/Zero-to-Full-Stack-Hero.jpg",
     _createdAt: new Date(),
   };
 
