@@ -1,33 +1,25 @@
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import { Tweet } from "../../typings";
 import TweetBox from "../TweetBox/TweetBox";
-import TweetComponent from "../Tweet/Tweet";
-import toast from "react-hot-toast";
-import { useState } from "react";
+import TweetComponent from "../Tweet/TweetComponent";
 import fetchTweets from "../../utils/fetchTweets";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 interface Props {
   tweets: Tweet[];
 }
 
-export default function Feed({ tweets }: Props) {
-  const [tweetsState, setTweetsState] = useState(tweets);
-  const tweetData = {
-    text: "This is a DEMO TWEET",
-    username: "Sonny Sangha",
-    profileImg:
-      "https://pbs.twimg.com/profile_images/1339192504382590976/2WxMn8cm_400x400.jpg",
-    image:
-      "https://downloadly.ir/wp-content/uploads/2021/06/Zero-to-Full-Stack-Hero.jpg",
-    _createdAt: new Date(),
-  };
+export default function Feed({ tweets: tweetsProp }: Props) {
+  const [tweets, setTweets] = useState<Tweet[]>(tweetsProp);
+  console.log(tweets);
 
-  async function refreshTweets() {
-    const pending = toast.loading("Loading...");
-    const response = await fetchTweets();
-    setTweetsState(response);
-    toast.success("Success yaay!!!", { id: pending });
-  }
+  const refreshTweets = async () => {
+    const loading = toast.loading("Loading...");
+    const tweets = await fetchTweets();
+    setTweets(tweets);
+    toast.success("Success", { id: loading });
+  };
 
   return (
     <section className="col-span-7 p-3 overflow-auto md:col-span-5">
@@ -39,7 +31,11 @@ export default function Feed({ tweets }: Props) {
         />
       </div>
       <TweetBox />
-      <TweetComponent {...tweetData} />
+      <div>
+        {tweets.map((tweet) => {
+          return <TweetComponent key={tweet._id} tweet={tweet} />;
+        })}
+      </div>
     </section>
   );
 }
