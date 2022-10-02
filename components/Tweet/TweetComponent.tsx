@@ -126,7 +126,7 @@ function TweetComponent({ tweet }: Props) {
           {comments.map((comment) => (
             <div
               key={comment._id}
-              className="relative flex space-x-2 my-1 ml-4"
+              className="relative flex space-x-2 my-3 ml-3"
             >
               <hr className="absolute left-5 top-10 h-8 border-x border-twitter/30" />
               <img
