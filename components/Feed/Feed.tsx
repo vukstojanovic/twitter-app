@@ -30,7 +30,7 @@ export default function Feed({ tweets: tweetsProp }: Props) {
           onClick={refreshTweets}
         />
       </div>
-      <TweetBox />
+      <TweetBox setTweets={setTweets} />
       <div>
         {tweets.map((tweet) => {
           return <TweetComponent key={tweet._id} tweet={tweet} />;
