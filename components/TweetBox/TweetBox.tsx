@@ -1,4 +1,10 @@
-import React, { useState, useRef, FormEvent, Dispatch, SetStateAction } from "react";
+import React, {
+  useState,
+  useRef,
+  FormEvent,
+  Dispatch,
+  SetStateAction,
+} from "react";
 
 import Image from "next/image";
 import {
@@ -15,7 +21,7 @@ import fetchTweets from "../../utils/fetchTweets";
 import toast from "react-hot-toast";
 
 interface Props {
-  setTweets: Dispatch<SetStateAction<Tweet[]>>
+  setTweets: Dispatch<SetStateAction<Tweet[]>>;
 }
 
 function TweetBox({ setTweets }: Props) {
@@ -33,7 +39,7 @@ function TweetBox({ setTweets }: Props) {
     e.preventDefault();
     if (!inputRef.current?.value.trim()) return;
     setImageUrl(inputRef.current.value.trim());
-    console.log(imageUrl, 'imageuuuuuuurl');
+    console.log(imageUrl, "imageuuuuuuurl");
 
     setImageUrlBoxIsOpen(false);
   }
@@ -41,35 +47,37 @@ function TweetBox({ setTweets }: Props) {
   const postTweet = async () => {
     const tweetInfo: TweetBody = {
       text: input,
-      username: session?.user?.name || 'Uknown User',
-      profileImg: session?.user?.image || 'https://links.papareact.com/gll',
-      image: imageUrl
-    }
+      username: session?.user?.name || "Unknown User",
+      profileImg: session?.user?.image || "https://links.papareact.com/gll",
+      image: imageUrl,
+    };
 
     const result = await fetch(`/api/addTweet`, {
       body: JSON.stringify(tweetInfo),
-      method: 'POST'
-    })
+      method: "POST",
+    });
 
-    const json = await result.json()
+    const json = await result.json();
 
     const newTweets = await fetchTweets();
-    setTweets(newTweets)
+    setTweets(newTweets);
 
-    toast('Tweet Posted', {
-      icon: <RocketLaunchIcon />
-    })
+    toast("Tweet Posted", {
+      icon: <RocketLaunchIcon />,
+    });
 
-    return json
-  }
+    return json;
+  };
 
-  const handleSubmit = (e: any /* MouseEvent<HTMLButtonElement, globalThis.MouseEvent> */) => {
-    e.preventDefault()
+  const handleSubmit = (
+    e: any /* MouseEvent<HTMLButtonElement, globalThis.MouseEvent> */
+  ) => {
+    e.preventDefault();
     postTweet();
-    setInput('')
+    setInput("");
     // setImage('')
-    setImageUrlBoxIsOpen(false)
-  }
+    setImageUrlBoxIsOpen(false);
+  };
 
   return (
     <div>

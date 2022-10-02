@@ -12,8 +12,6 @@ interface Props {
 }
 
 const Home = ({ tweets }: Props) => {
-  console.log(tweets);
-
   return (
     <>
       <Head>
