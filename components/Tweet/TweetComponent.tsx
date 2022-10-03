@@ -22,12 +22,12 @@ function TweetComponent({ tweet }: Props) {
   const [showComment, setShowComment] = useState(false);
   const { data: session } = useSession();
 
-  const refreshComments = async () => {
+  const getComments = async () => {
     const comments = await fetchComments(tweet._id);
     setComments(comments);
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const pending = toast.loading("Posting comment...");
     const comment: CommentBody = {
@@ -36,7 +36,7 @@ function TweetComponent({ tweet }: Props) {
       username: session?.user?.name || "Unknown user",
       profileImg: session?.user?.image || "https://links.papareact.com/gll",
     };
-    const result = fetch("/api/addComment", {
+    const result = await fetch("/api/addComment", {
       body: JSON.stringify(comment),
       method: "POST",
     });
@@ -45,11 +45,11 @@ function TweetComponent({ tweet }: Props) {
 
     setInput("");
     setShowComment(false);
-    refreshComments();
+    getComments();
   };
 
   useEffect(() => {
-    refreshComments();
+    getComments();
   }, []);
 
   return (

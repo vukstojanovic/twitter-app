@@ -15,7 +15,7 @@ export default function Widget() {
       </div>
       <TwitterTimelineEmbed
         sourceType="profile"
-        screenName="saurabhnemade"
+        screenName="sonnysangha"
         options={{ height: 1000 }}
       />
     </section>

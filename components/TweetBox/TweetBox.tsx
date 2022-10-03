@@ -70,12 +70,12 @@ function TweetBox({ setTweets }: Props) {
   };
 
   const handleSubmit = (
-    e: any /* MouseEvent<HTMLButtonElement, globalThis.MouseEvent> */
+    e: FormEvent /* MouseEvent<HTMLButtonElement, globalThis.MouseEvent> */
   ) => {
     e.preventDefault();
     postTweet();
     setInput("");
-    // setImage('')
+    setImageUrl("");
     setImageUrlBoxIsOpen(false);
   };
 
